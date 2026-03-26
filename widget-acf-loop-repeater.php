@@ -539,6 +539,14 @@ class Elementor_Acf_Loop_Repeater_Widget extends Widget_Nested_Base {
 			]
 		);
 
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'content_typography',
+				'selector' => '{{WRAPPER}} .e-n-accordion-item > .e-n-accordion-item-content',
+			]
+		);
+
 		$this->add_responsive_control(
 			'content_padding',
 			[
@@ -720,6 +728,11 @@ class Elementor_Acf_Loop_Repeater_Widget extends Widget_Nested_Base {
                 ?>
                 <details class="e-n-accordion-item e-normal" <?php echo ( ( $settings['default_state'] ?? 'expanded' ) === 'expanded' && 0 === $index ) ? 'open' : ''; ?>>
                     <summary <?php $this->print_render_attribute_string( $tab_title_setting_key ); ?>>
+                        <span class="e-n-accordion-item-title-header">
+                            <<?php Utils::print_validated_html_tag( $settings['title_html_tag'] ); ?> class="e-n-accordion-item-title-text"><?php
+                                echo esc_html( $question );
+                            ?></<?php Utils::print_validated_html_tag( $settings['title_html_tag'] ); ?>>
+                        </span>
                         <?php if ( $has_icon ) : ?>
                             <span class="e-n-accordion-item-title-icon" aria-hidden="true">
                             <?php
@@ -732,11 +745,6 @@ class Elementor_Acf_Loop_Repeater_Widget extends Widget_Nested_Base {
                             <?php } ?>
                             </span>
                         <?php endif; ?>
-                        <span class="e-n-accordion-item-title-header">
-                            <<?php Utils::print_validated_html_tag( $settings['title_html_tag'] ); ?> class="e-n-accordion-item-title-text"><?php
-                                echo esc_html( $question );
-                            ?></<?php Utils::print_validated_html_tag( $settings['title_html_tag'] ); ?>>
-                        </span>
                     </summary>
                     <div <?php echo $this->get_render_attribute_string( $tab_content_setting_key ); ?>>
                         <?php
