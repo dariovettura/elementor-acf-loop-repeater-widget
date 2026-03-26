@@ -23,7 +23,9 @@ function register_acf_loop_repeater_widget( $widgets_manager ) {
 
 	require_once( __DIR__ . '/widget-acf-loop-repeater.php' );
 
-	$widgets_manager->register( new \Elementor_Acf_Loop_Repeater_Widget() );
+	if ( class_exists( '\Elementor_Acf_Loop_Repeater_Widget' ) ) {
+		$widgets_manager->register( new \Elementor_Acf_Loop_Repeater_Widget() );
+	}
 
 }
 add_action( 'elementor/widgets/register', 'register_acf_loop_repeater_widget' );
